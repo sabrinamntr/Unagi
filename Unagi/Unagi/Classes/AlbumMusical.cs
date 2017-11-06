@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Biblioteca;
-using Biblioteca.Estrutura;
-
+using Unagi.Estrutura;
 namespace Unagi
 {
     class AlbumMusical : Midia, ICatalogo

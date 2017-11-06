@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unagi", "Unagi\Unagi.csproj", "{7D72CD08-F4F0-4A10-B50B-988AEC0F261C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Biblioteca", "ClassLibrary1\Biblioteca.csproj", "{91338FC9-4921-4CCA-A4C4-ABCE3FEF0C49}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{7D72CD08-F4F0-4A10-B50B-988AEC0F261C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D72CD08-F4F0-4A10-B50B-988AEC0F261C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D72CD08-F4F0-4A10-B50B-988AEC0F261C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{91338FC9-4921-4CCA-A4C4-ABCE3FEF0C49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{91338FC9-4921-4CCA-A4C4-ABCE3FEF0C49}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{91338FC9-4921-4CCA-A4C4-ABCE3FEF0C49}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{91338FC9-4921-4CCA-A4C4-ABCE3FEF0C49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
