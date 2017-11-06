@@ -1,6 +1,6 @@
 ﻿namespace Biblioteca
 {
-    interface ILocal
+    public interface ILocal
     {
         string ArquivoMidia { get; set; }
 

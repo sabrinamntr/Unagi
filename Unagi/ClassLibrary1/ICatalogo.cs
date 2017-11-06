@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Biblioteca
 {
-    interface ICatalogo
+    public interface ICatalogo
     {
         int AnoDeLancamento { get; set; }
     }
