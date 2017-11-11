@@ -11,12 +11,28 @@ namespace Unagi
         //Fazer Enumerador de formato(MP3, WAV ou WMA);
 
         double duracao;
+
+        public double Duracao
+        {
+            get { return duracao; }
+            set { duracao = value; }
+        }
         int volume;
+
+        public int Volume
+        {
+            get { return volume; }
+            set { volume = value; }
+        }
         private string arquivoMidia;
 
-        public string ArquivoMidia { get => arquivoMidia; set => arquivoMidia = value; }
-        public double Duracao { get => duracao; set => duracao = (true ? value : duracao = 0); } //faz validacao assim pra ficar bonitinho;
-        public int Volume { get => volume; set => volume = value; }
+        
+
+        public string ArquivoMidia
+        {
+            get { return arquivoMidia; }
+            set { arquivoMidia = value; }
+        }       
         
 
         public override void Alterar()

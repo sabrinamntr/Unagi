@@ -13,9 +13,20 @@ namespace Unagi
 
         string artista;
 
+        public string Artista
+        {
+            get { return artista; }
+            set { artista = value; }
+        }
+
         private int anoDeLancamento;
-        public int AnoDeLancamento { get => anoDeLancamento; set => anoDeLancamento = value; }
-        public string Artista { get => artista; set => artista = value; }
+
+        public int AnoDeLancamento
+        {
+            get { return anoDeLancamento; }
+            set { anoDeLancamento = value; }
+        }
+        
 
         public override void Alterar()
         {

@@ -10,16 +10,42 @@ namespace Unagi
     class Foto : Midia, ILocal, ICatalogo
     {
         private string localizacao;
+
+        public string Localizacao
+        {
+            get { return localizacao; }
+            set { localizacao = value; }
+        }
         private double megaPixels;
+
+        public double MegaPixels
+        {
+            get { return megaPixels; }
+            set { megaPixels = value; }
+        }
         private int tempoDeExibicao;
+
+        public int TempoDeExibicao
+        {
+            get { return tempoDeExibicao; }
+            set { tempoDeExibicao = value; }
+        }
         private string arquivoMidia;
+
+        public string ArquivoMidia
+        {
+            get { return arquivoMidia; }
+            set { arquivoMidia = value; }
+        }
         private int anoDeLancamento;
 
-        public string ArquivoMidia { get => arquivoMidia; set => arquivoMidia = value; }
-        public int AnoDeLancamento { get => anoDeLancamento; set => anoDeLancamento = value; }
-        public string Localizacao { get => localizacao; set => localizacao = value; }
-        public double MegaPixels { get => megaPixels; set => megaPixels = value; }
-        public int TempoDeExibicao { get => tempoDeExibicao; set => tempoDeExibicao = value; }
+        public int AnoDeLancamento
+        {
+            get { return anoDeLancamento; }
+            set { anoDeLancamento = value; }
+        }
+
+        
 
         public override void Alterar()
         {
