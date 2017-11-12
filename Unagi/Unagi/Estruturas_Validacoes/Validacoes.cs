@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Unagi
-{    
+{
 
     namespace Estrutura
     {
@@ -20,10 +21,10 @@ namespace Unagi
                 Proximo = null;
             }
         }
-        public class Lista
+        public class Lista : IEnumerable
         {
 
-            NodoLista primeiro = null; // ponteiro para o primeiro elemento da lista
+            private NodoLista primeiro = null; // ponteiro para o primeiro elemento da lista
             int qtde = 0;
             /// <summary>
             /// Método para inserir um valor na lista
@@ -81,7 +82,7 @@ namespace Unagi
             /// </summary>
             /// <param name="obj">valor</param>
             /// <param name="posicao">posicao iniciando do 1</param>
-            public void InserirNaPosicao(object obj, int posicao)
+            private void InserirNaPosicao(object obj, int posicao)
             {
                 if (posicao > qtde || posicao < 0)
                     throw new Exception("Não é possível inserir.");
@@ -117,12 +118,69 @@ namespace Unagi
                 }
                 qtde--;
             }
+
+            public object RetornaDaPosicao(int posicao)
+            {
+                if (posicao >= qtde || posicao < 0 || qtde == 0)
+                    throw new Exception("Posicao fora dos paramentros.");
+                else
+                {
+                    NodoLista aux = primeiro;
+                    for (int i = 0; i < posicao; i++)
+                        aux = aux.Proximo;
+
+                    return aux.Dado;
+                }
+            }
+
+            public int RetornaPosicao(object obj)
+            {
+                NodoLista aux = primeiro;
+                for (int i = 0; i < qtde; i++)
+                { 
+                    aux = aux.Proximo;
+                    if(aux.Dado == obj)
+                        return i;
+                }
+                return -1;
+
+            }
+            
+            public IEnumerator GetEnumerator()
+            {
+                return new EnumeradorLista();
+            }
+
+            private class EnumeradorLista : IEnumerator 
+            {
+                private int _atual = -1;
+
+                private Lista Pai;
+                
+                public object Current
+                {
+                    get { return Pai.RetornaDaPosicao(_atual); }
+                }
+
+                public bool MoveNext()
+                {
+                    _atual++;
+                    return _atual < Pai.qtde;
+                }
+
+                public void Reset()
+                {
+                    _atual = -1;
+                }
+            }
         }
+        
+
     }
 
     namespace Estrutura
     {
-       
+
     }
 
 }

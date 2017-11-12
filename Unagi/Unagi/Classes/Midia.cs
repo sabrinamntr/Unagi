@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace Unagi
 {
-    abstract class Midia
+    public abstract class Midia
     {
-        int id;
+        protected int id;
         string descricao;        
 
         public abstract void Incluir();
