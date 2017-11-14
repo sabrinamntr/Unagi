@@ -3,47 +3,90 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Unagi.Estrutura;
+using System.IO;
 namespace Unagi
 {
     class Musica : Midia, ILocal
     {
         //Fazer Enumerador de formato(MP3, WAV ou WMA);
 
-        double duracao;
-        int volume;
-        private string arquivoMidia;
-
-        public string ArquivoMidia { get => arquivoMidia; set => arquivoMidia = value; }
-        public double Duracao { get => duracao; set => duracao = (true ? value : duracao = 0); } //faz validacao assim pra ficar bonitinho;
-        public int Volume { get => volume; set => volume = value; }
+        public static Lista ListaMusicas = new Lista();
         
+
+        double duracao;
+        public double Duracao
+        {
+            get { return duracao; }
+            set { duracao = value; }
+        }
+
+        int volume;
+        public int Volume
+        {
+            get { return volume; }
+            set { volume = value; }
+        }
+
+        private string arquivoMidia;
+        public string ArquivoMidia
+        {
+            get { return arquivoMidia; }
+            set { arquivoMidia = value; }
+        }               
 
         public override void Alterar()
         {
-            throw new NotImplementedException();
+            //Pergunta qual musica
+            //Musica MPassada = ...
+            //Alterar(MPassada)
         }
+        public void Alterar(Musica MPassada)
+        {
+            foreach(Musica M in ListaMusicas)
+            {
+                if(M.Id == MPassada.Id)
+                {
+                    Excluir(M);
+                    Incluir(MPassada);
+                }
+            }
+        }        
 
-        
-
-        public override void Consultar(int id)
+        public override void Consultar(int id)//abrir forms com dados, e permitir alteração
         {
             throw new NotImplementedException();
         }
 
         public override void Excluir()
         {
-            throw new NotImplementedException();
+            //Pergunta qual musica
+            //Musica MPassada = ...
+            //Excluir(MPassada)
+        }
+        public void Excluir(Musica MPassada)
+        {
+            foreach (Musica M in ListaMusicas)
+            {
+                if (M.Id == MPassada.Id)
+                {
+                    ListaMusicas.RemoverDaPosicao(ListaMusicas.RetornaPosicao(M));
+                }
+            }
         }
 
         public override void Incluir()
         {
             throw new NotImplementedException();
         }
+        public void Incluir(Musica MPassada)
+        {
+            ListaMusicas.InserirNoFim(MPassada);
+        }
 
         public bool validaCaminho(string path)
         {
-            throw new NotImplementedException();
+            return File.Exists(path);
         }
     }
 }

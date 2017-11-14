@@ -1,40 +1,71 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Unagi
-{    
+{
 
     namespace Estrutura
     {
-        public class NodoLista
+        public class Nodo
         {
-            public object Dado { get; set; }
-            public NodoLista Proximo { get; set; }
-            /// <summary>
-            /// Construtor sem parâmetros
-            /// </summary>
-            public NodoLista()
+            object dado;
+
+            public object Dado
             {
-                Dado = null;
-                Proximo = null;
+                get { return dado; }
+                set { dado = value; }
+            }
+            Nodo proximo;
+
+            public Nodo Proximo
+            {
+                get { return proximo; }
+                set { proximo = value; }
+            }
+
+            Nodo anterior;
+
+            public Nodo Anterior
+            {
+                get { return anterior; }
+                set { anterior = value; }
+            }
+
+            /// <summary>
+            /// Construtor parametrizado
+            /// </summary>
+            /// <param name="dado"></param>
+            /// <param name="proximo"></param>
+            public Nodo(object dado, Nodo proximo)
+            {
+                this.dado = dado;
+                this.proximo = proximo;
+            }
+
+            /// <summary>
+            /// construtor sem parâmetros
+            /// </summary>
+            public Nodo()
+            {
+                dado = null;
+                proximo = null;
+                anterior = null;
             }
         }
-        public class Lista
+        public class Lista : IEnumerable
         {
-
-            NodoLista primeiro = null; // ponteiro para o primeiro elemento da lista
+            Nodo primeiro = null;
+            Nodo ultimo = null;
             int qtde = 0;
-            /// <summary>
-            /// Método para inserir um valor na lista
-            /// </summary>
-            /// <param name="anterior">o NodoLista que será o anterior ao NodoLista inserido.
-            /// Se o novo NodoLista for o primeiro, passe null</param>
-            /// <param name="valor">o valor a ser inserido</param>
-            private void InserirNaPosicao(NodoLista anterior, object obj)
+
+
+            private void InserirNaPosicao(Nodo anterior, object valor)
             {
-                NodoLista novo = new NodoLista();
-                novo.Dado = obj;
+                Nodo novo = new Nodo();
+                novo.Dado = valor;
+
                 if (anterior == null)
                 {
                     if (qtde == 0)
@@ -42,6 +73,7 @@ namespace Unagi
                     else
                     {
                         novo.Proximo = primeiro;
+                        primeiro.Anterior = novo;
                         primeiro = novo;
                     }
                 }
@@ -49,80 +81,180 @@ namespace Unagi
                 {
                     novo.Proximo = anterior.Proximo;
                     anterior.Proximo = novo;
+                    novo.Anterior = anterior;
+                    if (novo.Proximo != null)
+                    {
+                        novo.Proximo.Anterior = novo;
+                    }
                 }
+
+                if (novo.Proximo == null)
+                    ultimo = novo;
+
                 qtde++;
             }
-            /// <summary>
-            /// Insere um valor no início da lista
-            /// </summary>
-            /// <param name="valor"></param>
-            public void InserirNoInicio(object obj)
+
+            public void InserirNoInicio(object valor)
             {
-                InserirNaPosicao(null, obj);
+                InserirNaPosicao(null, valor);
             }
-            /// <summary>
-            /// Insere um valor no final da lista
-            /// </summary>
-            /// <param name="valor"></param>
-            public void InserirNoFim(object obj)
+            public void InserirNoFim(object valor)
             {
                 if (qtde == 0)
-                    InserirNoInicio(obj);
+                {
+                    InserirNoInicio(valor);
+                }
                 else
                 {
-                    NodoLista aux = primeiro;
-                    while (aux.Proximo != null)
-                        aux = aux.Proximo;
-                    InserirNaPosicao(aux, obj);
+                    InserirNaPosicao(ultimo, valor);
                 }
             }
             /// <summary>
             /// Insere em uma posição, iniciando do 0
             /// </summary>
-            /// <param name="obj">valor</param>
-            /// <param name="posicao">posicao iniciando do 1</param>
-            public void InserirNaPosicao(object obj, int posicao)
+            /// <param name="valor">valor</param>
+            /// <param name="posicao">posicao iniciando do 0</param>
+            public void InserirNaPosicao(object valor, int posicao)
             {
                 if (posicao > qtde || posicao < 0)
                     throw new Exception("Não é possível inserir.");
+
                 if (posicao == 0)
-                    InserirNoInicio(obj);
+                    InserirNoInicio(valor);
                 else
                 {
-                    //descobre qual é o NodoLista anterior ao que será incluído
-                    NodoLista aux = primeiro;
+                    Nodo aux = primeiro;
                     for (int i = 1; i < posicao; i++)
                         aux = aux.Proximo;
-                    InserirNaPosicao(aux, obj);
+
+                    InserirNaPosicao(aux, valor);
                 }
             }
-            /// <summary>
-            /// Remove um elemento da lista com base em sua posição, que inicia
-            /// do zero
-            /// </summary>
-            /// <param name="posicao">posição</param>
-            public void RemoverDaPosicao(int posicao)
+
+
+            public object RemoverDaPosicao(int posicao)
             {
                 if (posicao >= qtde || posicao < 0 || qtde == 0)
                     throw new Exception("Não é possível remover.");
-                if (posicao == 0)
-                    primeiro = primeiro.Proximo;
+
+                object valor = "";
+                qtde--;
+
+                if (qtde == 0)
+                {
+                    valor = primeiro.Dado;
+                    primeiro = ultimo = null;
+                    return valor;
+                }
                 else
                 {
-                    //descobre qual é o NodoLista anterior que será excluido
-                    NodoLista aux = primeiro;
-                    for (int i = 1; i < posicao; i++)
-                        aux = aux.Proximo;
-                    aux.Proximo = aux.Proximo.Proximo;
+                    //nodoApagado irá armazenar o nodo será apagado.
+                    Nodo nodoApagado = primeiro;
+                    for (int i = 1; i <= posicao; i++)  // encontra o elemento anterior ao que será apagado
+                        nodoApagado = nodoApagado.Proximo;
+
+                    valor = nodoApagado.Dado;
+
+                    if (nodoApagado.Proximo == null) // ajusta o último
+                        ultimo = nodoApagado.Anterior;
+
+                    if (nodoApagado.Anterior == null) // ajusta o primeiro
+                        primeiro = nodoApagado.Proximo;
+
+                    if (nodoApagado.Anterior != null)
+                        nodoApagado.Anterior.Proximo = nodoApagado.Proximo;
+
+                    if (nodoApagado.Proximo != null)
+                        nodoApagado.Proximo.Anterior = nodoApagado.Anterior;
+
+                    return valor;
                 }
-                qtde--;
+            }
+
+
+            public bool Existe(object dado)
+            {
+                Nodo aux = primeiro;
+                while (aux != null)
+                {
+                    if (aux.Dado == dado)
+                        return true;
+                    aux = aux.Proximo;
+                }
+
+                return false;
+            }
+
+            public int RetornaPosicao(object dado)
+            {
+                int pos = 0;
+                Nodo aux = primeiro;
+                while (aux != null)
+                {
+                    if (aux.Dado == dado)
+                        return pos;
+                    aux = aux.Proximo;
+                    pos++;
+                }
+                pos = -1;
+                return pos;
+            }
+
+
+            /// <summary>
+            /// Método listar recursivo
+            /// </summary>
+            /// <param name=""></param>
+            /// <returns></returns>           
+
+
+            public Nodo RetornaPrimeiro()
+            {
+                return primeiro;
+            }
+
+            Nodo nodoAtualParaForEach = null;
+
+            public bool MoveNext()
+            {
+                if (nodoAtualParaForEach == null)
+                    nodoAtualParaForEach = RetornaPrimeiro();
+                else
+                    nodoAtualParaForEach = nodoAtualParaForEach.Proximo;
+
+                return nodoAtualParaForEach != null;
+            }
+
+            public void Reset()
+            {
+                nodoAtualParaForEach = null;
+            }
+
+            public IEnumerator GetEnumerator()
+            {
+                Reset();
+                //return this as IEnumerator;
+                return (IEnumerator)this;
+            }
+
+
+            public object Current
+            {
+                get
+                {
+                    return nodoAtualParaForEach.Dado;
+                }
             }
         }
     }
 
+
+
+
     namespace Estrutura
     {
-       
+
     }
+
 
 }

@@ -10,12 +10,29 @@ namespace Unagi
     {
         //fazer enumerador : formato(AVI, WMV, MKV, MP4, MPEG, OUTROS????) e idioma (portugues, inglês, espanhol, outros)
         private string arquivoMidia;
+
+        public string ArquivoMidia
+        {
+            get { return arquivoMidia; }
+            set { arquivoMidia = value; }
+        }
         private int anoDeLancamento;
+
+        public int AnoDeLancamento
+        {
+            get { return anoDeLancamento; }
+            set { anoDeLancamento = value; }
+        }
         bool possuiLegenda;
 
-        public string ArquivoMidia { get => arquivoMidia; set => arquivoMidia = value; }
-        public int AnoDeLancamento { get => anoDeLancamento; set => anoDeLancamento = value; }
-        public bool PossuiLegenda { get => possuiLegenda; set => possuiLegenda = value; }
+        public bool PossuiLegenda
+        {
+            get { return possuiLegenda; }
+            set { possuiLegenda = value; }
+        }
+
+        
+        
 
         public override void Alterar()
         {

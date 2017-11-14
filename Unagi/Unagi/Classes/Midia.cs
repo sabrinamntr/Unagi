@@ -8,10 +8,36 @@ using System.Windows.Forms;
 
 namespace Unagi
 {
-    abstract class Midia
+    public abstract class Midia
     {
-        int id;
-        string descricao;        
+        private int id;
+        string descricao;
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public string Descricao
+        {
+            get
+            {
+                return descricao;
+            }
+
+            set
+            {
+                descricao = value;
+            }
+        }
 
         public abstract void Incluir();
 
