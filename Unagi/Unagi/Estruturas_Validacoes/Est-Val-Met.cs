@@ -2,9 +2,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-
+using System.IO;
 namespace Unagi
 {
+    namespace Metodos
+    {
+        public static class Arquivo
+        {
+            public static void CarregaMidias(Estrutura.Lista L)
+            {
+                if (!File.Exists("Banco.txt"))
+                {
+                    File.Create("Banco.txt");
+                    return;
+                }
+
+                string[] arquivo = File.ReadAllLines("Banco.txt");
+                foreach(string s in arquivo)
+                {
+                    string[] linha = s.Split();
+                    switch (linha[0])
+                    {
+                        case "Musica":
+                            addMusica(linha);
+                            break;
+                        case "Foto":
+                            addFoto(linha);
+                            break;
+                            
+
+
+                    }
+                }
+
+                void addMusica(string[] F)
+                {
+
+                }
+                void addFoto(string[] F)
+                {
+
+                }
+                
+            
+            }
+        }
+
+    }
 
     namespace Estrutura
     {
