@@ -25,7 +25,27 @@ namespace Unagi.Formularios
         private void btnCadastro_Click(object sender, EventArgs e)
         {
             frCadastro telaCadastro = new frCadastro();
+            telaCadastro.Location = new Point(321, 223);
             telaCadastro.ShowDialog();
+        }
+
+        private void frPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frGerenciarPlaylist telaPlaylist = new frGerenciarPlaylist();
+            telaPlaylist.Location = new Point(321, 223);
+            telaPlaylist.ShowDialog();
+        }
+
+        private void bFDFD_Click(object sender, EventArgs e)
+        {
+            frSobre telaSobre = new frSobre();
+            telaSobre.Location = new Point(321,223);
+            telaSobre.ShowDialog();
         }
     }
 }

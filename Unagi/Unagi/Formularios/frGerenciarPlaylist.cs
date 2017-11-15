@@ -8,23 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Unagi.Formularios
+namespace Unagi
 {
-    public partial class frSobre : Form
+    public partial class frGerenciarPlaylist : Form
     {
-        public frSobre()
+        public frGerenciarPlaylist()
         {
             InitializeComponent();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            Close();
+           
         }
 
-        private void frSobre_Load(object sender, EventArgs e)
+        private void btnVoltar_Click_1(object sender, EventArgs e)
         {
-
+            Close();
         }
     }
 }

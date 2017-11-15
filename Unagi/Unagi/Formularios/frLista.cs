@@ -38,5 +38,16 @@ namespace Unagi
         {
 
         }
+
+        private void frLista_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+
+        }
     }
 }

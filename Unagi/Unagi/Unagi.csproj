@@ -65,12 +65,6 @@
     <Compile Include="Classes\Midia.cs" />
     <Compile Include="Classes\Musica.cs" />
     <Compile Include="Classes\Foto.cs" />
-    <Compile Include="Formularios\frAlterarMidia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\frAlterarMidia.Designer.cs">
-      <DependentUpon>frAlterarMidia.cs</DependentUpon>
-    </Compile>
     <Compile Include="Formularios\frCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,16 +89,22 @@
     <Compile Include="Formularios\frLista.Designer.cs">
       <DependentUpon>frLista.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\frGerenciarPlaylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frGerenciarPlaylist.Designer.cs">
+      <DependentUpon>frGerenciarPlaylist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Intefaces\ICatalogo.cs" />
     <Compile Include="Intefaces\ILocal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Video.cs" />
-    <EmbeddedResource Include="Formularios\frAlterarMidia.resx">
-      <DependentUpon>frAlterarMidia.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frCadastro.resx">
       <DependentUpon>frCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frGerenciarPlaylist.resx">
+      <DependentUpon>frGerenciarPlaylist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frLista.resx">
       <DependentUpon>frLista.cs</DependentUpon>
